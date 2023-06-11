@@ -29,11 +29,12 @@
 - matplotlib 3.7.1
 - seaborn 0.12.2
 - scikit-learn 1.2.2
+- graphviz 0.20.1
 - xgboost 1.7.5
 - lightgbm 3.3.5
 - shap 0.41.0
 - optuna 3.1.1
-- graphviz 0.20.1
+
 
 ## 正誤表
 | ページ | 誤 | 正 | 補足 |
