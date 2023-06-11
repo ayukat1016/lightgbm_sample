@@ -1,4 +1,7 @@
 # LightGBM予測モデル実装ハンドブック
+
+<a href="[https://www.amazon.co.jp/gp/product/4798062294?pf_rd_r=ZTMA91YPE324B3QHMFNB&pf_rd_p=3d55ec74-6376-483a-a5a7-4e247166f80b&pd_rd_r=225c6ecb-5120-405a-b170-c214443ff320&pd_rd_w=kM9v5&pd_rd_wg=PJNj3&ref_=pd_gw_unk](https://www.amazon.co.jp/dp/479806761X)"><img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
+
 書籍「[LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X)」のサポートサイトです。本書籍で使用するサンプルコードがまとめてあります。
 
 ## 章の構成
