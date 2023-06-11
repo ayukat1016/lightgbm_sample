@@ -1,6 +1,6 @@
 # LightGBM予測モデル実装ハンドブック
 
-<a href="https://www.amazon.co.jp/dp/479806761X"><img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
+<img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
 
 書籍「[LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X)」のサポートサイトです。本書籍で使用するサンプルコードがまとめてあります。
 
