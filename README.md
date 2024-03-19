@@ -12,7 +12,7 @@
 - 第5章：LightGBMへの発展
 
 ## エラー発生時の問い合わせ
-サンプルコードの間違いや動作不具合は本リポジトリのIssuesに投稿ください。
+サンプルコードの間違いや動作不具合は本リポジトリのIssuesに投稿してください。
 
 動作不具合についての投稿では、以下を記載ください。
 
@@ -20,6 +20,7 @@
 - エラーメッセージ
 - ライブラリバージョン
 
+その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
 ライブラリは執筆時点のGoogle Colaboratoryの最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合はバージョンを戻して実行してください。
@@ -34,6 +35,51 @@
 - lightgbm 3.3.5
 - shap 0.41.0
 - optuna 3.1.1
+- plotly 5.13.1
+
+
+## Google Colaboratoryの実行手順
+[Google Colaboratory](https://colab.google/)は環境構築が不要でクラウド環境のNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
+
+## Dockerの実行手順
+PCのローカル環境で実行できるようDockerfileを用意しました。以下の手順を参考に環境構築して、Jupyter Labでサンプルコードを実行してください。
+
+- 前提条件
+    - Windows(WSL2)やMacなどのPC
+    - Gitがインストール済み
+    - Dockerがインストール済み
+    - pyenv/poetryがインストール済み（ただし、ライブラリのバージョンを変更しないのであればインストール不要。[pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理、[Poetry](https://python-poetry.org/)はライブラリのバージョンの依存関係を解決し、requirements.txt を出力します。requirements.txt はビルドで使用します。）
+
+- コマンドラインでリポジトリをgit cloneし、ディレクトリ「lightgbm_sample」に移動します。(「/xxx/repository」はユーザにより異なります。)
+```sh
+# リポジトリの取得
+$ git clone https://github.com/ayukat1016/lightgbm_sample.git
+
+# ディレクトリの移動
+$ cd lightgbm_sample/
+
+# ディレクトリの確認
+$ pwd
+/home/xxx/repository/lightgbm_sample
+```
+
+- Dockerfileを指定して、imageをビルドします。
+
+```sh
+# ビルド
+$ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f $PWD/Dockerfile .
+```
+
+- imageを指定してコンテナを起動、Jupyter Labを実行します。サンプルコードのnotebookはコンテナにマウントします。
+
+```sh
+# コンテナ起動＋Jupyter Lab実行
+$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
+```
+
+- webブラウザのURLにアクセスし、サンプルコードのNotebookを実行します。URL: http://localhost:8888
+
+- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
 
 ## 正誤表
@@ -49,4 +95,5 @@
 | 日付          | 変更内容                                                             |
 | :------------ | :------------------------------------------------------------------- |
 | 2023/06/17 　 | 初版　                                                               |
-| 2023/08/16 　 | 初版の正誤表を追加 　                                                               |
+| 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
+| 2024/03/19 　 | Dockerの実行手順を追加                                |
