@@ -20,7 +20,7 @@
 - エラーメッセージ
 - ライブラリバージョン
 
-その他問い合わせは筆者メールアドレス ayukat101699@gmail.com までお願いします。
+その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
 ライブラリは執筆時点のGoogle Colaboratoryの最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合はバージョンを戻して実行してください。
@@ -38,6 +38,50 @@
 - plotly 5.13.1
 
 
+## Google Colaboratoryの実行手順
+[Google Colaboratory](https://colab.google/)は環境構築なしでクラウド環境のNotebookを実行できます。1.3節の手順を参考に初期設定して、Google Driveにサンプルコードを格納してください。
+
+## Dockerの実行手順
+PCのローカル環境で実行できるようDockerfileを用意しました。以下の手順を参考に環境構築して、Jupyter Labでサンプルコードを実行してください。
+
+- 前提条件
+    - WSL2やMACなどの実行環境を用意
+    - Gitがインストール済み
+    - Dockerがインストール済み
+    - pyenv/poetryがインストール済み（ただし、ライブラリのバージョンを変更しないのであればインストール不要。[pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理、[Poetry](https://python-poetry.org/)はライブラリのバージョンの依存関係を解決し、requirements.txt を出力します。requirements.txt はビルドで使用します。）
+
+- コマンドラインでリポジトリをgit cloneし、ディレクトリ「lightgbm_sample」に移動します。(「/xxx/repository」はユーザにより異なります。)
+```sh
+# リポジトリの取得
+$ git clone https://github.com/ayukat1016/lightgbm_sample.git
+
+# ディレクトリの移動
+$ cd lightgbm_sample/
+
+# ディレクトリの確認
+$ pwd
+/home/xxx/repository/lightgbm_sample
+```
+
+- Dockerfileを指定して、imageをビルドします。
+
+```sh
+# ビルド
+$ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f $PWD/Dockerfile .
+```
+
+- imageを指定してコンテナを起動、Jupyter Labを実行します。サンプルコードのnotebookはコンテナにマウントします。
+
+```sh
+# コンテナ起動＋Jupyter Lab実行
+$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
+```
+
+- webブラウザのURLにアクセスし、サンプルコードのNotebookを実行します。URL: http://localhost:8888
+
+- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
+
+
 ## 正誤表
 | ページ | 誤 | 正 | 補足 |
 |:-----------|:------------|:------------|:------------|
@@ -52,39 +96,4 @@
 | :------------ | :------------------------------------------------------------------- |
 | 2023/06/17 　 | 初版　                                                               |
 | 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
-| 2024/03/19 　 | Docker環境でのjupyterlab実行手順を追加                                |
-
-## Docker環境での実行
-Colab環境とは別にPCのローカル実行できるようDocker環境の実行手順を記載します。
-
-- 前提条件
-    - WSL2やMACなどのPC実行環境
-    - Gitがインストール済み
-    - Dockerがインストール済み
-    - pyenv/poetryがインストール済み（ただし、ライブラリのバージョンを変更しないのであればインストール不要。pyenvはPythonのバージョン管理、poetryはライブラリのバージョンの依存関係を解決し、Dockerfileで読み込むrequirements.txtを出力）
-
-- コマンドラインでリポジトリをgit cloneし、ディレクトリ「lightgbm_sample」に移動します。(「/xxx/repository」はユーザにより異なります。)
-```sh
-$ git clone https://github.com/ayukat1016/lightgbm_sample.git
-
-$ cd lightgbm_sample/
-
-$ pwd
-/home/xxx/repository/lightgbm_sample
-```
-
-- Dockerfileを指定して、imageをビルドします。
-
-```sh
-$ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f $PWD/Dockerfile .
-```
-
-- imageを指定してコンテナを起動し、その中でjupyterlabを実行します。notebookはコンテナにマウントします。
-
-```sh
-$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
-```
-
-- webブラウザのURLにアクセスします。URL: http://localhost:8888
-
-- 利用終了時はコマンドラインで Ctrlキー + C を押下してください。
+| 2024/03/19 　 | Dockerでの実行手順を追加                                |
