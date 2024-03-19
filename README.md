@@ -23,7 +23,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点のGoogle Colaboratoryの最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合はバージョンを戻して実行してください。
+ライブラリは執筆時点のGoogle Colaboratoryの最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合はバージョンを戻してください。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -39,10 +39,10 @@
 
 
 ## Google Colaboratoryの実行手順
-[Google Colaboratory](https://colab.google/)は環境構築が不要でクラウド環境のNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
+[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
 
 ## Dockerの実行手順
-PCのローカル環境で実行できるようDockerfileを用意しました。以下の手順を参考に環境構築して、Jupyter Labでサンプルコードを実行してください。
+PCのローカル環境でサンプルコードを実行できるようDockerfileを用意しました。以下の手順を参考に環境構築して、Notebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどのPC
@@ -77,7 +77,7 @@ $ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -
 $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
 ```
 
-- webブラウザのURLにアクセスし、サンプルコードのNotebookを実行します。URL: http://localhost:8888
+- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードのNotebookを実行します。
 
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
