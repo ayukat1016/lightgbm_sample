@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "lightgbm-sample"
+version = "0.1.0"
+description = ""
+authors = ["takuya.mouri <ayukat101699@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.11"
+pandas = "1.5.3"
+numpy = "1.22.4"
+matplotlib = "3.7.1"
+seaborn = "0.12.2"
+scikit-learn = "1.2.2"
+graphviz = "0.20.1"
+xgboost = "1.7.5"
+lightgbm = "3.3.5"
+shap = "0.41.0"
+optuna = "3.1.1"
+plotly = "5.13.1"
+jupyterlab = "4.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
