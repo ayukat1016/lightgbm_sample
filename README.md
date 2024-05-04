@@ -23,7 +23,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点の[Google Colaboratory]((https://colab.google/))の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
+ライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -39,10 +39,10 @@
 
 
 ## Google Colaboratoryの実行手順
-[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
+[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
 
 ## Dockerの実行手順
-PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、Jupyter Labを実行してください。
+PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行環境
