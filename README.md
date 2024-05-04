@@ -2,7 +2,7 @@
 
 <img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
 
-書籍「[LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X)」のサポートサイトです。本書籍で使用するサンプルコードがまとめてあります。
+書籍 [LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X) のサポートサイトです。本書籍で使用するサンプルコードを提供します。
 
 ## 章の構成
 - 第1章：予測モデルの概要
@@ -23,7 +23,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点のGoogle Colaboratoryの最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合はバージョンを戻してください。
+ライブラリは執筆時点の[Google Colaboratory]((https://colab.google/))の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -42,15 +42,15 @@
 [Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
 
 ## Dockerの実行手順
-PCのローカル環境でサンプルコードを実行できるようDockerfileを用意しました。以下の手順を参考に環境構築して、Notebookを実行してください。
+PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、Jupyter Labを実行してください。
 
 - 前提条件
-    - Windows(WSL2)やMacなどのPC
-    - Gitがインストール済み
-    - Dockerがインストール済み
-    - pyenv/poetryがインストール済み（ただし、ライブラリのバージョンを変更しないのであればインストール不要。[pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理、[Poetry](https://python-poetry.org/)はライブラリのバージョンの依存関係を解決し、requirements.txt を出力します。requirements.txt はビルドで使用します。）
+    - Windows(WSL2)やMacなどコマンドラインの実行環境
+    - [Git](https://git-scm.com/)がインストール済み
+    - [Docker](https://www.docker.com/ja-jp/)がインストール済み
+    - pyenv/poetryがインストール済み（ただし、ライブラリを変更しないのであればインストール不要。[pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理します。[Poetry](https://python-poetry.org/)はライブラリバージョンの依存関係を解決し、`requirements.txt`を出力します。`requirements.txt`はビルドで使用します。）
 
-- コマンドラインでリポジトリをgit cloneし、ディレクトリ「lightgbm_sample」に移動します。(「/xxx/repository」はユーザにより異なります。)
+- コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
 ```sh
 # リポジトリの取得
 $ git clone https://github.com/ayukat1016/lightgbm_sample.git
@@ -58,26 +58,26 @@ $ git clone https://github.com/ayukat1016/lightgbm_sample.git
 # ディレクトリの移動
 $ cd lightgbm_sample/
 
-# ディレクトリの確認
+# ディレクトリの確認(`/xxx/repository`はユーザにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
 ```
 
-- Dockerfileを指定して、imageをビルドします。
+- `Dockerfile`を指定して、imageをビルドします。
 
 ```sh
 # ビルド
 $ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f $PWD/Dockerfile .
 ```
 
-- imageを指定してコンテナを起動、Jupyter Labを実行します。サンプルコードのnotebookはコンテナにマウントします。
+- imageを指定してコンテナを起動、Jupyter Labを実行します。サンプルコードのNotebookを`-v`でコンテナにマウントします。
 
 ```sh
 # コンテナ起動＋Jupyter Lab実行
 $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
 ```
 
-- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードのNotebookを実行します。
+- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
 
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
@@ -87,6 +87,7 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 |:-----------|:------------|:------------|:------------|
 | p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
 | p17 上部  |当月の月末までの取引量を| 今月の月末までの取引量を| 誤字  |
+| p60 回帰係数  |$\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})$| $\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})$| 数式の誤記載  |
 | p306 中央 | インデックスj関係は以下の関係になります。| インデックスjは以下の関係になります。| 誤字  |
 | p340 1本目の木の可視化 | figsize=(20,20)| figsize=(20, 20)| スペースを追加  |
 
@@ -97,3 +98,4 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 | 2023/06/17 　 | 初版　                                                               |
 | 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
 | 2024/03/19 　 | Dockerの実行手順を追加                                |
+| 2024/05/05 　 | 正誤表の更新                                |
