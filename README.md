@@ -23,7 +23,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点の[Google Colaboratory]((https://colab.google/))の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
+ライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -39,10 +39,10 @@
 
 
 ## Google Colaboratoryの実行手順
-[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを実行します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
+[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
 
 ## Dockerの実行手順
-PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、Jupyter Labを実行してください。
+PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行環境
@@ -87,7 +87,7 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 |:-----------|:------------|:------------|:------------|
 | p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
 | p17 上部  |当月の月末までの取引量を| 今月の月末までの取引量を| 誤字  |
-| p60 回帰係数  |$\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})$| $\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})$| 数式の誤記載  |
+| p60 回帰係数  |$`\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})`$| $`\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})`$| 数式の誤記載  |
 | p306 中央 | インデックスj関係は以下の関係になります。| インデックスjは以下の関係になります。| 誤字  |
 | p340 1本目の木の可視化 | figsize=(20,20)| figsize=(20, 20)| スペースを追加  |
 
