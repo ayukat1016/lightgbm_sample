@@ -42,13 +42,15 @@
 [Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
 
 ## Dockerの実行手順
-PCのローカル環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+PCのDocker環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行環境
     - [Git](https://git-scm.com/)がインストール済み
     - [Docker](https://www.docker.com/ja-jp/)がインストール済み
-    - pyenv/poetryがインストール済み（ただし、ライブラリを変更しないのであればインストール不要。[pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理します。[Poetry](https://python-poetry.org/)はライブラリバージョンの依存関係を解決し、`requirements.txt`を出力します。`requirements.txt`はビルドで使用します。）
+    - [Pyenv](https://github.com/pyenv/pyenv)と[Poetry](https://python-poetry.org/)がインストール済み（ただし、ライブラリを変更しないのであればインストール不要。）
+      - [Pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理します。
+      - [Poetry](https://python-poetry.org/)はライブラリバージョンの依存関係を解決し、`requirements.txt`を出力します。`requirements.txt`はビルドで使用します。
 
 - コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
 ```sh
@@ -81,6 +83,72 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
+## Poeryの実行手順
+PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`、`poetry.lock`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+
+- 前提条件
+    - Windows(WSL2)やMacなどコマンドラインの実行環境
+    - [Git](https://git-scm.com/)がインストール済み
+    - [Pyenv](https://github.com/pyenv/pyenv)がインストール済み
+    - [Poetry](https://python-poetry.org/)がインストール済み
+
+- コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
+```sh
+# リポジトリの取得
+$ git clone https://github.com/ayukat1016/lightgbm_sample.git
+
+# ディレクトリの移動
+$ cd lightgbm_sample/
+
+# ディレクトリの確認(`/xxx/repository`はユーザにより異なります。)
+$ pwd
+/home/xxx/repository/lightgbm_sample
+```
+
+- PyenvでPythonのバージョンを指定します。
+```sh
+# Pythonのインストール
+$ pyenv install 3.10.11
+
+# バージョンの指定
+$ pyenv local 3.10.11
+
+# バージョンの確認
+$ pyenv versions
+  system
+* 3.10.11
+```
+
+- Poetryの仮想環境を構築し、仮想環境に`pyproject.toml`で指定したライブラリをインストールします。
+```sh
+# 仮想環境の構築
+$ poetry install
+
+# 仮想環境の確認
+$ poetry env list
+lightgbm-sample-qPUWcycm-py3.10 (Activated)
+```
+
+- 決定木の可視化に使用するGraphvizをインストールします。
+
+```sh
+# graphvizのインストール
+$ sudo apt install -y graphviz
+
+# graphvizの確認
+$ dot -V
+dot - graphviz version 2.43.0 (0)
+```
+- poetryの仮想環境で、Jupyter Labを実行します。
+
+```sh
+# 仮想環境起動＋Jupyter Lab実行
+$ poetry run jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
+```
+
+- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
+
+- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
 ## 正誤表
 | ページ | 誤 | 正 | 補足 |
@@ -99,3 +167,4 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 | 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
 | 2024/03/19 　 | Dockerの実行手順を追加                                |
 | 2024/05/05 　 | 正誤表の更新                                |
+| 2024/05/07 　 | Poetryの実行手順を追加                               |
