@@ -1,8 +1,8 @@
 # LightGBM予測モデル実装ハンドブック
+書籍 [LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X) のサポートサイトです。本書籍で使用するサンプルコードを提供します。
 
 <img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
 
-書籍 [LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X) のサポートサイトです。本書籍で使用するサンプルコードを提供します。
 
 ## 章の構成
 - 第1章：予測モデルの概要
@@ -11,10 +11,19 @@
 - 第4章：回帰の予測モデル改善
 - 第5章：LightGBMへの発展
 
+## 正誤表
+| ページ | 誤 | 正 | 補足 |
+|:-----------|:------------|:------------|:------------|
+| p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
+| p17 上部  |当月の月末までの取引量を| 今月の月末までの取引量を| 誤字  |
+| p60 回帰係数  |$`\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})`$| $`\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})`$| 数式の誤記載  |
+| p306 中央 | インデックスj関係は以下の関係になります。| インデックスjは以下の関係になります。| 誤字  |
+| p340 1本目の木の可視化 | figsize=(20,20)| figsize=(20, 20)| スペースを追加  |
+
 ## エラー発生時の問い合わせ
 サンプルコードの間違いや動作不具合は本リポジトリのIssuesに投稿してください。
 
-動作不具合についての投稿では、以下を記載ください。
+動作不具合についての投稿では、以下を記載してください。
 
 - 実行プログラム名
 - エラーメッセージ
@@ -23,7 +32,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、バージョンを戻してください。
+ライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、以下のバージョンに戻してください。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -49,7 +58,7 @@ PCのDocker環境でサンプルコードを実行できるよう`Dockerfile`を
     - [Git](https://git-scm.com/)がインストール済み
     - [Docker](https://www.docker.com/ja-jp/)がインストール済み
     - [Pyenv](https://github.com/pyenv/pyenv)と[Poetry](https://python-poetry.org/)がインストール済み（ただし、ライブラリを変更しないのであればインストール不要。）
-      - [Pyenv](https://github.com/pyenv/pyenv)はPythonのバージョン管理します。
+      - [Pyenv](https://github.com/pyenv/pyenv)はPythonのバージョンを管理します。
       - [Poetry](https://python-poetry.org/)はライブラリバージョンの依存関係を解決し、`requirements.txt`を出力します。`requirements.txt`はビルドで使用します。
 
 - コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
@@ -84,7 +93,7 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
 ## Poeryの実行手順
-PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`、`poetry.lock`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行環境
@@ -132,7 +141,7 @@ lightgbm-sample-qPUWcycm-py3.10 (Activated)
 - 決定木の可視化に使用するGraphvizをインストールします。
 
 ```sh
-# graphvizのインストール
+# graphvizのインストール(実行後にsudoパスワードを入力)
 $ sudo apt install -y graphviz
 
 # graphvizの確認
@@ -149,15 +158,6 @@ $ poetry run jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port
 - webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
 
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
-
-## 正誤表
-| ページ | 誤 | 正 | 補足 |
-|:-----------|:------------|:------------|:------------|
-| p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
-| p17 上部  |当月の月末までの取引量を| 今月の月末までの取引量を| 誤字  |
-| p60 回帰係数  |$`\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})`$| $`\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})`$| 数式の誤記載  |
-| p306 中央 | インデックスj関係は以下の関係になります。| インデックスjは以下の関係になります。| 誤字  |
-| p340 1本目の木の可視化 | figsize=(20,20)| figsize=(20, 20)| スペースを追加  |
 
 
 ## 変更履歴
