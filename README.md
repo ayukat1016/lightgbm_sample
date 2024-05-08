@@ -1,8 +1,8 @@
 # LightGBM予測モデル実装ハンドブック
+書籍 [LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X) のサポートサイトです。本書籍で使用するサンプルコードを提供します。
 
 <img width="184" alt="lightgbm_cover" src="https://github.com/ayukat1016/lightgbm_sample/assets/40778791/ac373ff9-d220-402a-ad3e-fb86e0ddb3ed"></a>
 
-書籍 [LightGBM予測モデル実装ハンドブック](https://www.amazon.co.jp/dp/479806761X) のサポートサイトです。本書籍で使用するサンプルコードを提供します。
 
 ## 章の構成
 - 第1章：予測モデルの概要
@@ -93,7 +93,7 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
 ## Poeryの実行手順
-PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`、`poetry.lock`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行環境
@@ -141,7 +141,7 @@ lightgbm-sample-qPUWcycm-py3.10 (Activated)
 - 決定木の可視化に使用するGraphvizをインストールします。
 
 ```sh
-# graphvizのインストール
+# graphvizのインストール(実行後にsudoパスワードを入力)
 $ sudo apt install -y graphviz
 
 # graphvizの確認
