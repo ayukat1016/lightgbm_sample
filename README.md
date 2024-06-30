@@ -54,7 +54,7 @@
 PCのDocker環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
-    - Windows(WSL2)やMacなどコマンドラインの実行環境
+    - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC
     - [Git](https://git-scm.com/)がインストール済み
     - [Docker](https://www.docker.com/ja-jp/)がインストール済み
     - [Pyenv](https://github.com/pyenv/pyenv)と[Poetry](https://python-poetry.org/)がインストール済み（ただし、ライブラリを変更しないのであればインストール不要。）
@@ -78,25 +78,25 @@ $ pwd
 
 ```sh
 # ビルド
-$ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f $PWD/Dockerfile .
+$ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f Dockerfile .
 ```
 
-- imageを指定してコンテナを起動、Jupyter Labを実行します。サンプルコードのNotebookを`-v`でコンテナにマウントします。
+- imageを指定してコンテナを起動、Jupyter Labのコマンドを実行します。サンプルコードのNotebookを`-v`でコンテナにマウントします。
 
 ```sh
 # コンテナ起動＋Jupyter Lab実行
-$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
+$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token=''
 ```
 
 - webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
 
 - 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
 
-## Poeryの実行手順
+## Poetryの実行手順
 PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
-    - Windows(WSL2)やMacなどコマンドラインの実行環境
+    - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC    
     - [Git](https://git-scm.com/)がインストール済み
     - [Pyenv](https://github.com/pyenv/pyenv)がインストール済み
     - [Poetry](https://python-poetry.org/)がインストール済み
@@ -141,18 +141,18 @@ lightgbm-sample-qPUWcycm-py3.10 (Activated)
 - 決定木の可視化に使用するGraphvizをインストールします。
 
 ```sh
-# graphvizのインストール(実行後にsudoパスワードを入力)
+# graphvizのインストール(実行時にsudoパスワードを入力)
 $ sudo apt install -y graphviz
 
 # graphvizの確認
 $ dot -V
 dot - graphviz version 2.43.0 (0)
 ```
-- poetryの仮想環境で、Jupyter Labを実行します。
+- poetryの仮想環境で、Jupyter Labのコマンドを実行します。
 
 ```sh
 # 仮想環境起動＋Jupyter Lab実行
-$ poetry run jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token='' --port=8888
+$ poetry run jupyter lab --allow-root --NotebookApp.token='' --port=8888
 ```
 
 - webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
