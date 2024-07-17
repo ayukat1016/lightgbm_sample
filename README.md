@@ -32,7 +32,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-ライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colabのライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、以下のバージョンに戻してください。
+動作確認したライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerの環境は記載のバージョンでライブラリを固定してあります。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -47,11 +47,11 @@
 - plotly 5.13.1
 
 
-## Google Colaboratoryの実行手順
-[Google Colaboratory](https://colab.google/)はクラウド環境でNotebookを提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納してください。
+## Google Colaboratoryの実行環境
+[Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを実行してください。
 
-## Dockerの実行手順
-PCのDocker環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+## Dockerコンテナの実行環境
+PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC
@@ -72,6 +72,10 @@ $ cd lightgbm_sample/
 # ディレクトリの確認(`/xxx/repository`はユーザにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
+
+# ディクショナリの中のファイルの確認
+$ ls
+Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.lock  pyproject.toml  requirements.txt
 ```
 
 - `Dockerfile`を指定して、imageをビルドします。
@@ -90,9 +94,9 @@ $ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 
 - webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
 
-- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
+- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。このとき、コンテナは自動的に停止、削除されます。
 
-## Poetryの実行手順
+## Poetryを使用したPython実行環境
 PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
 
 - 前提条件
@@ -112,6 +116,10 @@ $ cd lightgbm_sample/
 # ディレクトリの確認(`/xxx/repository`はユーザにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
+
+# ディクショナリの中のファイルの確認
+$ ls
+Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.lock  pyproject.toml  requirements.txt
 ```
 
 - PyenvでPythonのバージョンを指定します。
@@ -165,6 +173,7 @@ $ poetry run jupyter lab --allow-root --NotebookApp.token='' --port=8888
 | :------------ | :------------------------------------------------------------------- |
 | 2023/06/17 　 | 初版　                                                               |
 | 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
-| 2024/03/19 　 | Dockerの実行手順を追加                                |
+| 2024/03/19 　 | Dockerコンテナの実行環境を追加                                |
 | 2024/05/05 　 | 正誤表の更新                                |
-| 2024/05/07 　 | Poetryの実行手順を追加                               |
+| 2024/05/07 　 | Poetryを使用したPython実行環境を追加                               |
+| 2024/07/17 　 | 記載の見直し                               |
