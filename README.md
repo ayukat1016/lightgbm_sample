@@ -27,12 +27,12 @@
 
 - 実行プログラム名
 - エラーメッセージ
-- ライブラリバージョン
+- ライブラリのバージョン
 
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-動作確認したライブラリは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のライブラリは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerの環境は記載のバージョンでライブラリを固定してあります。
+動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のバージョンは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerコンテナの環境は記載のバージョンでライブラリを固定してあります。
 - Python 3.10.11
 - pandas 1.5.3
 - numpy 1.22.4
@@ -45,7 +45,6 @@
 - shap 0.41.0
 - optuna 3.1.1
 - plotly 5.13.1
-
 
 ## Google Colaboratoryの実行環境
 [Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを実行してください。
@@ -73,7 +72,7 @@ $ cd lightgbm_sample/
 $ pwd
 /home/xxx/repository/lightgbm_sample
 
-# ディクショナリの中のファイルの確認
+# ファイルの確認
 $ ls
 Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.lock  pyproject.toml  requirements.txt
 ```
@@ -85,7 +84,7 @@ Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.l
 $ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f Dockerfile .
 ```
 
-- imageを指定してコンテナを起動、Jupyter Labのコマンドを実行します。サンプルコードのNotebookを`-v`でコンテナにマウントします。
+- imageを指定してコンテナを起動、コンテナ内でJupyter Labのコマンドを実行します。サンプルコードのNotebookは`-v`オプションでコンテナ内にマウントします。
 
 ```sh
 # コンテナ起動＋Jupyter Lab実行
@@ -117,7 +116,7 @@ $ cd lightgbm_sample/
 $ pwd
 /home/xxx/repository/lightgbm_sample
 
-# ディクショナリの中のファイルの確認
+# ファイルの確認
 $ ls
 Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.lock  pyproject.toml  requirements.txt
 ```
