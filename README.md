@@ -149,6 +149,7 @@ lightgbm-sample-qPUWcycm-py3.10 (Activated)
 
 ```sh
 # graphvizのインストール(実行時にsudoパスワードを入力)
+$ sudo apt update
 $ sudo apt install -y graphviz
 
 # graphvizの確認
