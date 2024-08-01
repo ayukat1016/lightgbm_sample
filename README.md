@@ -17,6 +17,8 @@
 | p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
 | p17 上部  |当月の月末までの取引量を| 今月の月末までの取引量を| 誤字  |
 | p60 回帰係数  |$`\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})`$| $`\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})`$| 数式の誤記載  |
+| p112～232 SHAPの引数|feature_pertubation|feature_perturbation|Githubコードの2_4、3_3、4_3の引数は修正済み|
+| p129 前処理後のincome件数内訳の実行結果 |<=50K   24720、>50K      7841|<=50K   21999、>50K      7171| 誤って前処理前の件数を記載  |
 | p306 中央 | インデックスj関係は以下の関係になります。| インデックスjは以下の関係になります。| 誤字  |
 | p340 1本目の木の可視化 | figsize=(20,20)| figsize=(20, 20)| スペースを追加  |
 
@@ -32,19 +34,19 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のバージョンは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerコンテナの環境は記載のバージョンでライブラリを固定してあります。
-- Python 3.10.11
-- pandas 1.5.3
-- numpy 1.22.4
-- matplotlib 3.7.1
-- seaborn 0.12.2
-- scikit-learn 1.2.2
-- graphviz 0.20.1
-- xgboost 1.7.5
-- lightgbm 3.3.5
-- shap 0.41.0
-- optuna 3.1.1
-- plotly 5.13.1
+動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のバージョンは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerコンテナの環境は記載のバージョンでライブラリを固定してます。
+- Python:3.10.11
+- pandas:1.5.3
+- numpy:1.22.4
+- matplotlib:3.7.1
+- seaborn:0.12.2
+- scikit-learn:1.2.2
+- graphviz:0.20.1
+- xgboost:1.7.5
+- lightgbm:3.3.5
+- shap:0.41.0
+- optuna:3.1.1
+- plotly:5.13.1
 
 ## Google Colaboratoryの実行環境
 [Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを実行してください。
@@ -177,3 +179,4 @@ $ poetry run jupyter lab --allow-root --NotebookApp.token='' --port=8888
 | 2024/05/05 　 | 正誤表の更新                                |
 | 2024/05/07 　 | Poetryを使用したPython実行環境を追加                               |
 | 2024/07/17 　 | 記載の見直し                               |
+| 2024/08/01 　 | Issues#9,#10を正誤表に反映                               |
