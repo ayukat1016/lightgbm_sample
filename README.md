@@ -114,7 +114,7 @@ $ git clone https://github.com/ayukat1016/lightgbm_sample.git
 # ディレクトリの移動
 $ cd lightgbm_sample/
 
-# ディレクトリの確認(`/xxx/repository`はユーザにより異なります。)
+# ディレクトリの確認(`/xxx/repository`のディレクトリはユーザーにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
 
