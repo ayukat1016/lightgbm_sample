@@ -1,0 +1,5 @@
+# Jupyter の自動生成フォルダ
+**/.ipynb_checkpoints/
+
+# データファイル
+chapter5/exoTrain.csv
