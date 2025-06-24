@@ -11,13 +11,16 @@
 - 第4章：回帰の予測モデル改善
 - 第5章：LightGBMへの発展
 
+## サンプルコードの構成
+コードは章に合わせて、`chapter`ごとに分けて管理しています。なお、`.ipynb_checkpoints` や `chapter5/exoTrain.csv` は `.gitignore` により Git 管理から除外されています。
+
 ## 正誤表
 | No | ページ | 誤 | 正 | 補足 |
 |:--:|:-----------|:------------|:------------|:------------|
 | 1  | p4 謝辞 | 株式会社ウェブフォーマ ー| 株式会社ウェブファーマー| 会社名の記載ミス  |
 | 2  | p17 上部  | 当月の月末までの取引量を | 今月の月末までの取引量を | 誤字  |
 | 3  | p60 回帰係数  | $`\mathbf{w}^{*T}=(w_{0}^{*},w_{1}^{*},\cdots ,w_{m}^{*})`$ | $`\mathbf{w}^{*T}=(w_{1}^{*},w_{2}^{*},\cdots ,w_{m}^{*})`$ | 数式の誤記載  |
-| 4  | p112～232 SHAPの引数 | feature_pertubation | feature_perturbation | Githubコードの2_4、3_3、4_3の引数は修正済み |
+| 4  | p112～232 SHAPの引数 | feature_pertubation | feature_perturbation | GitHubコードの2_4、3_3、4_3の引数は修正済み |
 | 5  | p129 前処理後のincome件数内訳の実行結果 | <=50K   24720、>50K      7841 | <=50K   21999、>50K      7171 | 誤って前処理前の件数を記載  |
 | 6  | p306 中央 | インデックスj関係は以下の関係になります。 | インデックスjは以下の関係になります。 | 誤字  |
 | 7  | p340 1本目の木の可視化 | figsize=(20,20) | figsize=(20, 20) | スペースを追加  |
@@ -34,7 +37,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境のバージョンは定期的に更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Dockerコンテナの環境は記載のバージョンでライブラリを固定してます。
+動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境は定期的にバージョン更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Docker環境及びPoetry環境は記載のバージョンでライブラリを固定してます。
 - Python:3.10.11
 - pandas:1.5.3
 - numpy:1.22.4
@@ -49,13 +52,13 @@
 - plotly:5.13.1
 
 ## Google Colaboratoryの実行環境
-[Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを実行してください。
+[Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを開いて実行してください。
 
 ## Dockerコンテナの実行環境
-PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを開いて実行してください。
 
 - 前提条件
-    - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC
+    - Windows(WSL2)やMacなどコマンドライン実行が可能なPC
     - [Git](https://git-scm.com/)がインストール済み
     - [Docker](https://www.docker.com/ja-jp/)がインストール済み
     - [Pyenv](https://github.com/pyenv/pyenv)と[Poetry](https://python-poetry.org/)がインストール済み（ただし、ライブラリを変更しないのであればインストール不要。）
@@ -90,15 +93,15 @@ $ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -
 
 ```sh
 # コンテナ起動＋Jupyter Lab実行
-$ docker run -it --rm --name ligthgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token=''
+$ docker run -it --rm --name lightgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_sample:lightgbm_sample_1.0.0 jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token=''
 ```
 
-- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
+- webブラウザのURL [http://localhost:8888](http://localhost:8888) にアクセスし、サンプルコードを実行します。
 
-- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。このとき、コンテナは自動的に停止、削除されます。
+- 終了するには Ctrlキー + C を押下してください。このとき、コンテナは自動的に停止、削除されます。
 
 ## Poetryを使用したPython実行環境
-PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを実行してください。
+PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを開いて実行してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC    
@@ -147,7 +150,7 @@ $ poetry env list
 lightgbm-sample-qPUWcycm-py3.10 (Activated)
 ```
 
-- 決定木の可視化に使用するGraphvizをインストールします。
+- 決定木の可視化に使用するGraphvizをインストールします。Pythonパッケージだけでなく、システムの graphviz CLI も必要です
 
 ```sh
 # graphvizのインストール(実行時にsudoパスワードを入力)
@@ -162,13 +165,18 @@ dot - graphviz version 2.43.0 (0)
 
 ```sh
 # 仮想環境起動＋Jupyter Lab実行
-$ poetry run jupyter lab --allow-root --NotebookApp.token='' --port=8888
+$ poetry run jupyter lab --NotebookApp.token='' --port=8888
 ```
 
-- webブラウザのURL http://localhost:8888 にアクセスし、サンプルコードを実行します。
+- webブラウザのURL [http://localhost:8888](http://localhost:8888) にアクセスし、サンプルコードを実行します。
 
-- 利用終了時はコマンドラインで Ctrlキー + C を押下して、Jupyter Labを停止してください。
+- 終了するには Ctrlキー + C を押下してください。
 
+- Docker コンテナで Jupyter Notebook を使用した後は、以下のように `.ipynb_checkpoints` を削除してください。これらは root 権限で作成されるため、Poetry 環境（通常ユーザー）でアクセスするとエラーになります。
+
+```sh
+$ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
+```
 
 ## 変更履歴
 | 日付          | 変更内容                                                             |
@@ -181,3 +189,4 @@ $ poetry run jupyter lab --allow-root --NotebookApp.token='' --port=8888
 | 2024/07/17 　 | 記載の見直し                               |
 | 2024/08/01 　 | Issues#9,#10を正誤表に反映                               |
 | 2025/03/04 　 | 正誤表のNo列の追加                               |
+| 2025/06/24 　 | DockerでJupyter Notebookを実行した後のPoetry実行手順を追記        |
