@@ -4,7 +4,7 @@ FROM ${FROM_IMAGE}
 
 ARG LOCAL_DIR=.
 
-ENV PROJECT_DIR opt
+ENV PROJECT_DIR=opt
 WORKDIR /${PROJECT_DIR}
 COPY ${LOCAL_DIR}/requirements.txt /${PROJECT_DIR}/
 RUN apt-get -y update && \
