@@ -12,7 +12,7 @@
 - 第5章：LightGBMへの発展
 
 ## サンプルコードの構成
-コードは章に合わせて、`chapter`ごとに分けて管理しています。なお、`.ipynb_checkpoints` や `chapter5/exoTrain.csv` は `.gitignore` により Git 管理から除外されています。
+コードは章に合わせて、`chapter`ごとに分けて管理します。なお、`.ipynb_checkpoints` や `chapter5/exoTrain.csv` は `.gitignore` により Git 管理から除外しています。
 
 ## 正誤表
 | No | ページ | 誤 | 正 | 補足 |
@@ -26,7 +26,7 @@
 | 7  | p340 1本目の木の可視化 | figsize=(20,20) | figsize=(20, 20) | スペースを追加  |
 
 ## エラー発生時の問い合わせ
-サンプルコードの間違いや動作不具合は本リポジトリのIssuesに投稿してください。
+サンプルコードの間違いや動作不具合は本リポジトリの [Issues](https://github.com/ayukat1016/lightgbm_sample/issues) に投稿してください。
 
 動作不具合についての投稿では、以下を記載してください。
 
@@ -37,7 +37,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-動作確認したライブラリのバージョンは執筆時点の[Google Colaboratory](https://colab.google/)の最新バージョンになります。Colab環境は定期的にバージョン更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Docker環境及びPoetry環境は記載のバージョンでライブラリを固定してます。
+動作確認したライブラリのバージョンは執筆時点の [Google Colaboratory](https://colab.google/) の最新バージョンになります。Colab環境は定期的にバージョン更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Docker環境 及び Poetry環境は記載のバージョンでライブラリを固定してます。
 - Python:3.10.11
 - pandas:1.5.3
 - numpy:1.22.4
@@ -51,29 +51,34 @@
 - optuna:3.1.1
 - plotly:5.13.1
 
-## Google Colaboratoryの実行環境
-[Google Colaboratory](https://colab.google/)はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを開いて実行してください。
+## Google Colaboratoryの実行方法
+[Google Colaboratory](https://colab.google/) はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを開いて実行してください。
 
-## Dockerコンテナの実行環境
-PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを開いて実行してください。
+## Dockerコンテナ環境の実行方法
+PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。なお、ビルドで使用するライブラリ`requirements.txt`は [Poetry](https://python-poetry.org/) で作成しました。
+
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドライン実行が可能なPC
-    - [Git](https://git-scm.com/)がインストール済み
-    - [Docker](https://www.docker.com/ja-jp/)がインストール済み
-    - [Pyenv](https://github.com/pyenv/pyenv)と[Poetry](https://python-poetry.org/)がインストール済み（ただし、ライブラリを変更しないのであればインストール不要。）
-      - [Pyenv](https://github.com/pyenv/pyenv)はPythonのバージョンを管理します。
-      - [Poetry](https://python-poetry.org/)はライブラリバージョンの依存関係を解決し、`requirements.txt`を出力します。`requirements.txt`はビルドで使用します。
+    - [Git](https://git-scm.com/) がインストール済み（git version 2.34.1）
+    - [Docker](https://www.docker.com/ja-jp/) がインストール済み（Docker version 24.0.7）
+   
 
 - コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
 ```sh
+# クローン先ディレクトリの作成
+$ mkdir repository
+
+# ディレクトリの移動
+$ cd repository
+
 # リポジトリの取得
 $ git clone https://github.com/ayukat1016/lightgbm_sample.git
 
 # ディレクトリの移動
 $ cd lightgbm_sample/
 
-# ディレクトリの確認(`/xxx/repository`のディレクトリはユーザーにより異なります。)
+# ディレクトリの確認(`xxx`はユーザーにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
 
@@ -89,7 +94,7 @@ Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.l
 $ docker build --platform linux/amd64 -t lightgbm_sample:lightgbm_sample_1.0.0 -f Dockerfile .
 ```
 
-- imageを指定してコンテナを起動、コンテナ内でJupyter Labのコマンドを実行します。サンプルコードのNotebookは`-v`オプションでコンテナ内にマウントします。
+- imageを指定して、コンテナ起動、コンテナ内でJupyter Labのコマンドを実行します。サンプルコードのNotebookは`-v`オプションでコンテナ内にマウントします。
 
 ```sh
 # コンテナ起動＋Jupyter Lab実行
@@ -100,24 +105,30 @@ $ docker run -it --rm --name lightgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 
 - 終了するには Ctrlキー + C を押下してください。このとき、コンテナは自動的に停止、削除されます。
 
-## Poetryを使用したPython実行環境
-PCの仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#)のNotebookを開いて実行してください。
+## Poetry仮想環境の実行方法
+仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。手順は`virtualenvs.in-project = false`の初期設定で記載します。`lightgbm_sample`内に仮想環境`.venv`を作成したい場合は `virtualenvs.in-project = true`に変更してから環境構築してください。
 
 - 前提条件
     - Windows(WSL2)やMacなどコマンドラインの実行が可能なPC    
-    - [Git](https://git-scm.com/)がインストール済み
-    - [Pyenv](https://github.com/pyenv/pyenv)がインストール済み
-    - [Poetry](https://python-poetry.org/)がインストール済み
+    - [Git](https://git-scm.com/) がインストール済み（git version 2.34.1）
+    - [Pyenv](https://github.com/pyenv/pyenv) がインストール済み（pyenv 2.5.5）
+    - [Poetry](https://python-poetry.org/) がインストール済み（Poetry (version 1.8.2)）
 
 - コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
 ```sh
+# クローン先ディレクトリの作成
+$ mkdir repository
+
+# ディレクトリの移動
+$ cd repository
+
 # リポジトリの取得
 $ git clone https://github.com/ayukat1016/lightgbm_sample.git
 
 # ディレクトリの移動
 $ cd lightgbm_sample/
 
-# ディレクトリの確認(`/xxx/repository`のディレクトリはユーザーにより異なります。)
+# ディレクトリの確認(`xxx`はユーザーにより異なります。)
 $ pwd
 /home/xxx/repository/lightgbm_sample
 
@@ -140,7 +151,7 @@ $ pyenv versions
 * 3.10.11
 ```
 
-- Poetryの仮想環境を構築し、仮想環境に`pyproject.toml`で指定したライブラリをインストールします。
+- Poetry仮想環境を構築、`pyproject.toml`で指定したライブラリのバージョンをインストールします。
 ```sh
 # 仮想環境の構築
 $ poetry install
@@ -148,9 +159,13 @@ $ poetry install
 # 仮想環境の確認
 $ poetry env list
 lightgbm-sample-qPUWcycm-py3.10 (Activated)
+
+# 仮想環境ディレクトリの確認
+$ poetry env info --path
+/home/xxx/.cache/pypoetry/virtualenvs/lightgbm-sample-qPUWcycm-py3.10
 ```
 
-- 決定木の可視化に使用するGraphvizをインストールします。Pythonパッケージだけでなく、システムの graphviz CLI も必要です
+- 決定木の可視化に使用する Graphviz をインストールします。Pythonパッケージだけでなく、システムの graphviz CLI も必要です
 
 ```sh
 # graphvizのインストール(実行時にsudoパスワードを入力)
@@ -161,7 +176,7 @@ $ sudo apt install -y graphviz
 $ dot -V
 dot - graphviz version 2.43.0 (0)
 ```
-- poetryの仮想環境で、Jupyter Labのコマンドを実行します。
+- poetry仮想環境で、Jupyter Labのコマンドを実行します。
 
 ```sh
 # 仮想環境起動＋Jupyter Lab実行
@@ -172,9 +187,10 @@ $ poetry run jupyter lab --NotebookApp.token='' --port=8888
 
 - 終了するには Ctrlキー + C を押下してください。
 
-- Docker コンテナで Jupyter Notebook を使用した後は、以下のように `.ipynb_checkpoints` を削除してください。これらは root 権限で作成されるため、Poetry 環境（通常ユーザー）でアクセスするとエラーになります。
+- Docker コンテナで Jupyter Notebook を使用した後に Poetry を使用する場合、`.ipynb_checkpoints` を削除してください。これらは root 権限で作成されるため、Poetry 環境（通常ユーザー）でアクセスするとエラーになります。
 
 ```sh
+# `.ipynb_checkpoints`ファイルの削除
 $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 ```
 
@@ -183,10 +199,11 @@ $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 | :------------ | :------------------------------------------------------------------- |
 | 2023/06/17 　 | 初版　                                                               |
 | 2023/08/16 　 | 初版の正誤表を追加 　                                                 |
-| 2024/03/19 　 | Dockerコンテナの実行環境を追加                                |
+| 2024/03/19 　 | Dockerコンテナ環境の実行手順を追加                                |
 | 2024/05/05 　 | 正誤表の更新                                |
-| 2024/05/07 　 | Poetryを使用したPython実行環境を追加                               |
+| 2024/05/07 　 | Poetry仮想環境の実行手順を追加                               |
 | 2024/07/17 　 | 記載の見直し                               |
 | 2024/08/01 　 | Issues#9,#10を正誤表に反映                               |
 | 2025/03/04 　 | 正誤表のNo列の追加                               |
 | 2025/06/24 　 | DockerでJupyter Notebookを実行した後のPoetry実行手順を追記        |
+| 2025/08/13 　 | 記載の見直し        |
