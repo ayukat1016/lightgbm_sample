@@ -54,7 +54,7 @@
 [Google Colaboratory](https://colab.research.google.com/) はクラウドのJupyter Notebook環境を提供します。1.3節の手順を参考に初期設定して、Googleドライブにサンプルコードを格納して、Notebookを開いて実行してください。
 
 ## Dockerコンテナ環境の実行方法
-PCのDockerコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。なお、ビルドで使用するライブラリ`requirements.txt`は [Poetry](https://python-poetry.org/) で作成しました。
+[Docker](https://www.docker.com/ja-jp/) のコンテナ環境でサンプルコードを実行できるよう`Dockerfile`を用意しました。以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。なお、ビルドで使用するライブラリ`requirements.txt`は [Poetry](https://python-poetry.org/) で作成しました。
 
 
 - 前提条件
@@ -105,7 +105,7 @@ $ docker run -it --rm --name lightgbm_sample -v $PWD:/opt -p 8888:8888 lightgbm_
 - 終了するには Ctrlキー + C を押下してください。このとき、コンテナは自動的に停止、削除されます。
 
 ## Poetry仮想環境の実行方法
-仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。手順は`virtualenvs.in-project = false`（デフォルト）前提で記載しています。仮想環境の保存場所を変更したい場合は Poetry の設定をご自身の環境方針に合わせて調整してください。
+[Poetry](https://python-poetry.org/) の仮想環境でサンプルコードを実行できるよう`pyproject.toml`を用意しました。以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。手順は`virtualenvs.in-project = false`（デフォルト）前提で記載しています。仮想環境の保存場所を変更したい場合は Poetry の設定をご自身の環境方針に合わせて調整してください。
 
 - 前提条件
     - Windows（WSL2）・macOS・Linux など、コマンドラインの実行が可能なPC
