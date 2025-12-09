@@ -36,7 +36,7 @@
 その他問い合わせはメールアドレス ayukat101699@gmail.com までお願いします。
 
 ## ライブラリのバージョン
-動作確認したライブラリのバージョンは執筆時点の [Google Colaboratory](https://colab.research.google.com/) の最新バージョンになります。Colab環境は定期的にバージョン更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Docker環境 及び Poetry環境は`Python 3.10.11`で実行する前提でライブラリのバージョンを固定してます。
+動作確認したライブラリのバージョンは執筆時点の [Google Colaboratory](https://colab.research.google.com/) の最新バージョンになります。Colab環境は定期的にバージョン更新するので、プログラム実行時にエラーが発生する場合、記載のバージョンに戻して実行してください。Docker環境, Poetry環境, uv環境 は`Python 3.10.11`で実行する前提でライブラリのバージョンを固定してます。
 - Python: 3.10.11
 - pandas: 1.5.3
 - numpy: 1.22.4
@@ -196,6 +196,111 @@ $ poetry run jupyter lab --ServerApp.token='' --port=8888
 $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 ```
 
+## uv仮想環境の実行方法
+[uv](https://docs.astral.sh/uv/) の仮想環境でサンプルコードを実行できるよう手順を用意しました。Poetry の手順を正としつつ、近年 uv は高速で広く使われているため、補助的な位置づけで手順を追加しました。
+以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。Docker や Poetry 環境と同様に、uv 仮想環境も `Python 3.10.11` で動作させます。
+
+- 前提条件
+    - Windows（WSL2）・macOS・Linux など、コマンドラインの実行が可能なPC
+    - [Git](https://git-scm.com/) がインストール済み（git version 2.34.1）
+    - [uv](https://github.com/astral-sh/uv) がインストール済み（uv 0.9.16）
+
+
+- uv が未インストールの場合は、以下のコマンドでインストールしてください  
+すでにuvインストール済みの場合はこの手順はスキップしてください。
+
+```sh
+# 公式のインストール手順
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# インストールの確認
+$ uv --version
+uv 0.9.16
+```
+
+- uv仮想環境で使用する Python 3.10.11 をインストールします。（マシンごとに一度だけ）  
+すでに Python 3.10.11 がインストール済みの場合はこの手順はスキップしてください。
+
+```sh
+# ホームで実行推奨
+$ cd ~
+# Pythonのインストール
+$ uv python install 3.10.11
+```
+
+- コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
+```sh
+# クローン先ディレクトリの作成
+$ mkdir repository
+
+# ディレクトリの移動
+$ cd repository
+
+# リポジトリの取得
+$ git clone https://github.com/ayukat1016/lightgbm_sample.git
+
+# ディレクトリの移動
+$ cd lightgbm_sample/
+
+# ディレクトリの確認(`xxx`はユーザーにより異なります。)
+$ pwd
+/home/xxx/repository/lightgbm_sample
+
+# ファイルの確認
+$ ls
+Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.lock  pyproject.toml  requirements.txt
+```
+
+
+- Pythonのバージョンを指定します。
+- バージョン指定で`.python-version` が作成されるため、pyenv を利用している場合も同じ設定を共有できます。
+
+```sh
+# バージョンの指定
+$ uv python pin 3.10.11
+```
+
+- ディレクトリ`lightgbm_sample`内に`.venv`のuv仮想環境を構築します。
+```sh
+# 仮想環境を作成
+$ uv venv
+# 仮想環境にライブラリインストール
+$ uv pip sync requirements.txt
+```
+
+- 決定木の可視化に使用する Graphviz をインストールします。Pythonパッケージだけでなく、システムの graphviz CLI も必要です
+
+```sh
+# graphvizのインストール
+# Ubuntu / Debian
+$ sudo apt update && sudo apt install -y graphviz
+
+# macOS (Homebrew)
+$ brew install graphviz
+
+# graphvizの確認
+$ dot -V
+dot - graphviz version 2.43.0 (0)
+```
+- uv仮想環境で、JupyterLabのコマンドを実行します。
+
+```sh
+# 仮想環境起動＋JupyterLab実行
+$ uv run jupyter lab --ServerApp.token='' --port=8888
+```
+
+- webブラウザのURL [http://localhost:8888](http://localhost:8888) にアクセスし、サンプルコードを実行します。
+
+- 終了するには Ctrlキー + C を押下してください。
+
+- Docker コンテナで JupyterLab を使用した後に uv を使用する場合、`.ipynb_checkpoints` を削除してください。これらは root 権限で作成されるため、uv 環境（通常ユーザー）でアクセスするとエラーになります。
+
+```sh
+# `.ipynb_checkpoints`ファイルの削除
+$ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
+```
+
+
 ## 変更履歴
 | 日付          | 変更内容                                                             |
 | :------------ | :------------------------------------------------------------------- |
@@ -209,3 +314,4 @@ $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 | 2025-03-04 　 | 正誤表のNo列の追加                               |
 | 2025-06-24 　 | DockerでJupyterLabを実行した後のPoetry実行手順を追記        |
 | 2025-08-16 　 | 記載の見直し        |
+| 2025-12-09 　 | uv仮想環境の実行手順を追加        |

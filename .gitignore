@@ -3,3 +3,6 @@
 
 # データファイル
 chapter5/exoTrain.csv
+
+# uvのロックファイル
+uv.lock
