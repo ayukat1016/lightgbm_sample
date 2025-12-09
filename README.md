@@ -197,7 +197,7 @@ $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 ```
 
 ## uv仮想環境の実行方法
-[uv](https://docs.astral.sh/uv/) の仮想環境でサンプルコードを実行できるよう手順を用意しました。Poetry の手順を正としつつ、近年 uv は高速で広く使われているため、補助的な位置づけで手順を追加しました。
+Poetry の手順を正としつつ、近年 [uv](https://docs.astral.sh/uv/) は高速で広く使われているため、補助的な位置づけで手順を追加しました。
 以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。Docker や Poetry 環境と同様に、uv 仮想環境も `Python 3.10.11` で動作させます。
 
 - 前提条件
