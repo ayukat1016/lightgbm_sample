@@ -197,8 +197,7 @@ $ sudo find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
 ```
 
 ## uv仮想環境の実行方法
-Poetry の手順を正としつつ、近年 [uv](https://docs.astral.sh/uv/) は高速で広く使われているため、補助的な位置づけで手順を追加しました。
-以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。Docker や Poetry 環境と同様に、uv 仮想環境も `Python 3.10.11` で動作させます。
+Poetry の手順を正としつつ、近年 [uv](https://docs.astral.sh/uv/) は高速で広く使われているため、補助的な位置づけで手順を追加しました。以下の手順を参考に環境構築して、[JupyterLab](https://jupyterlab.readthedocs.io/en/latest/#) のNotebookを開いて実行してください。前提条件のバージョンは筆者が動作確認したバージョンです。Docker や Poetry 環境と同様に、uv 仮想環境も `Python 3.10.11` で動作させます。
 
 - 前提条件
     - Windows（WSL2）・macOS・Linux など、コマンドラインの実行が可能なPC
@@ -216,16 +215,6 @@ $ curl -LsSf https://astral.sh/uv/install.sh | sh
 # インストールの確認
 $ uv --version
 uv 0.9.16
-```
-
-- uv仮想環境で使用する Python 3.10.11 をインストールします。（マシンごとに一度だけ）  
-すでに Python 3.10.11 がインストール済みの場合はこの手順はスキップしてください。
-
-```sh
-# ホームで実行推奨
-$ cd ~
-# Pythonのインストール
-$ uv python install 3.10.11
 ```
 
 - コマンドラインでリポジトリをgit cloneし、ディレクトリ`lightgbm_sample`に移動します。
@@ -252,7 +241,7 @@ Dockerfile  LICENSE  README.md  chapter2  chapter3  chapter4  chapter5  poetry.l
 ```
 
 
-- Pythonのバージョンを指定します。
+- Pythonのバージョンを指定します。未インストールなら自動インストールされます。
 - バージョン指定で`.python-version` が作成されるため、pyenv を利用している場合も同じ設定を共有できます。
 
 ```sh
